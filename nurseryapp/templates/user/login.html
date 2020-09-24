@@ -1,0 +1,23 @@
+{% extends 'user/base.html' %}
+
+<!-- {% block title %}Login{% endblock %} -->
+
+{% block content %}
+{% if not user.is_authenticated %}
+
+<div class="container">
+  <h2>Login</h2>
+  <form class="card" method="POST" action="{% url 'nurseryapp:login' %}" style="padding: 25px;">
+    {% csrf_token %}
+    Email:
+    <input type="email" name="username"><br>
+    Password:
+    <input type="password" name=password value=""><br>
+    <button class="btn" type="submit">Login</button>
+  </form>
+</div>
+
+{% else %}
+  <h2>You're already loggedIn</h2>
+{% endif %}
+{% endblock %}

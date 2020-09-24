@@ -1,0 +1,89 @@
+{% extends 'user/base.html' %}
+
+{% block content %}
+
+<div id='cart-card' class="container col s12 m12 l12">
+    <div class="card horizontal">
+      <div class="card-stacked">
+        <div class="card-content">
+          <div>
+          
+          <a class="btn " style="display: inline-block; margin-top: 10px;" href="{% url 'nurseryapp:cart' %}">Back To Cart</a><br><br>
+          </div>
+          <div class="row">
+            <div class="col l8 m12 s12">
+                <div class="row">                 
+                  <form class="col s12" id="form" method="POST" action="{% url 'nurseryapp:process_order' %}">
+                    {% csrf_token %}
+                    <div id="shipping-info">
+                      <h5 class="left-align" style="display: inline-block;">Enter Address</h5> 
+                    <div class="row">                     
+                      <div class="input-field col s6">
+                        <input id="address" type="text" class="validate" name="address" required>
+                        <label for="address">Address</label>
+                      </div>                  
+                      <div class="input-field col s6">
+                        <input id="city" type="text" class="validate" name="city" required>
+                        <label for="city">City</label>
+                      </div>
+                    </div>  
+                    <div class="row">
+                      <div class="input-field col s6">
+                        <input id="state" type="text" class="validate" name="state" required>
+                        <label for="state">State</label>
+                      </div>                  
+                      <div class="input-field col s6">
+                        <input id="pincode" type="number" class="validate" name="pincode" required>
+                        <label for="pincode">PinCode</label>
+                      </div>
+                      </div>
+                    </div>  
+
+                    <input class="btn" type="submit" value="Proceed for payment"> 
+
+                    <!-- <ul class="collapsible left-align" id="payment-modal">
+                      <li>
+                        <div class="collapsible-header"><i class="large material-icons">payment</i><button class="btn white black-text" id="make-payment">Proceed for Payment</button> </div>
+                        <div class="collapsible-body">
+                          <span>
+                          <ul>
+                            <li><div id="paypal-button-container"></div></li>
+                          </ul>
+                        </span></div>
+                      </li>
+                    </ul>                                    -->
+                  </form>                                
+                </div>
+            </div>
+           
+            <div class="col l4 m12 s12" id="order-summary">
+              
+              <h5>Order Summary</h5><hr><br>
+              {% for item in items %}
+              <div class="row">
+                <div class="col l3 m3 s3">
+                  <img src="{{ item.product.image.url }}" alt="" height="50px" width="50px">
+                </div>
+                <div class="col l3 m3 s3">
+                  "{{ item.product.name|title }}"
+                </div>
+                <div class="col l3 m3 s3">
+                  {{ item.quantity }} Pot
+                </div>
+                <div class="col l3 m3 s3">
+                  Rs. {{ item.get_total }}
+                </div>
+              </div>
+              {% endfor %}
+              <hr>
+              <p>Total Plants: {{ order.get_cart_items }}</p><br>
+              <p>Total Price: Rs. {{ order.get_cart_total }}</p>
+              <hr>             
+            </div>  
+          </div> 
+        </div>
+      </div>
+    </div>
+</div>
+
+{% endblock %}

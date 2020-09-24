@@ -1,0 +1,53 @@
+{% extends 'user/base.html' %}
+
+{% block content %}
+
+<div id='cart-card' class="container col s12 m12 l12">  
+    <div class="card horizontal">
+      <div class="card-stacked">
+        <div class="card-content">      
+          <div class="row">
+            <div class="col l4 m4 s12">
+              Items: {{ order.get_cart_items }}
+            </div>
+            <div class="col l4 m4 s12">
+              Total: Rs. {{ order.get_cart_total|floatformat:2}}
+            </div>
+            <div class="col l4 m4 s12">
+              <a href="{% url 'nurseryapp:checkout' %}" class="waves-effect waves-light btn right">Checkout</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+{% for item in items %}
+<div id='cart-card' class="container col s12 m12 l12">
+  <div class="card horizontal">
+    <div class="card-stacked">
+      <div class="card-content">
+        <div class="row">
+          <div class="col l3 m3 s3">
+            <img src="{{ item.product.image.url }}" alt="" height="100px" width="100px">
+          </div>
+          <div class="col l3 m3 s3">
+            {{ item.product.name|title }}<br>
+            {{ item.product.description }}<br>
+            Rs. {{ item.product.price }}
+          </div>
+          <div class="col l3 m3 s3">
+            Quantity:<br>
+            <a class="btn btn-small btn-flat" href="{% url 'nurseryapp:cart_action' item.product.id 0 %}"><i class="material-icons">remove</i></a>
+              {{ item.quantity }}
+            <a class="btn btn-small btn-flat" href="{% url 'nurseryapp:cart_action' item.product.id 1 %}"><i class="material-icons">add</i></a> 
+          </div>
+          <div class="col l3 m3 s3">
+           Price:<br>Rs. {{ item.get_total }}
+          </div>
+        </div>        
+      </div>
+    </div>
+  </div>
+</div>
+{% endfor %}
+{% endblock %}

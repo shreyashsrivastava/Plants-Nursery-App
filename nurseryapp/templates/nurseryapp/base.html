@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>Nursery</title>
+
+<style>
+  .text-block {
+  position: absolute;
+  top: 350px;
+  left: 100px;
+  color: white;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+html{
+  scroll-behavior: smooth;
+}
+</style>
+
+</head>
+<body>
+    
+  <nav class="white" style="min-height: 175px;">
+    <div class="nav-wrapper">
+        <img href="{% url 'nurseryapp:home' %}" src="../../../media/logo/plant.svg" class="brand-logo" style="height:175px; width: 225px; padding-top: 15px; padding-left: 0px; padding-bottom: 10px;">
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <div class="center" style="margin-top: 60px; margin-right: 550px;">
+            <li><a href="#home" class="black-text bold"><b>Home</a></li>
+            <li><a href="#shop" class="black-text">Shop</a></li>
+            {% if user.is_authenticated %}
+              <li><a href="{% url 'nurseryapp:logout' %}" class="black-text">LogOut</a></li>
+            {% else %}
+              <li><a href="{% url 'nurseryapp:signup' %}" class="black-text">SignUp</a></li>
+              <li><a href="{% url 'nurseryapp:login_page' %}" class="black-text">LogIn</a></li>              
+            {% endif %}
+        </div>
+        <div class="right" style="margin-top: 7px;">
+            <li><a class="material-icons black-text">search</li>
+            <li><a class="material-icons black-text" href="{% url 'nurseryapp:dashboard' %}">account_circle</li>
+            <li><a class="material-icons black-text" href="{% url 'nurseryapp:cart' %}">shopping_cart</a></li>
+        </div>
+        </ul>
+    </div>
+  </nav>
+
+  <div>
+    <img src="../../../media/background/bg1.jpg" alt="bg1" style="filter:brightness(55%); height: 475px; width: 1349px;">
+    <div class="text-block">
+      <h4>Plants Nursery</h4>
+      <p>Naturalize your envirnoment</p>
+    </div>      
+  </div>
+   
+
+  {% block card %}
+  {% endblock %}
+
+
+
+  <footer class="page-footer light-green darken-1">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">Nursery</h5>
+          <p class="grey-text text-lighten-4">This website is for the showcase purpose only.</p>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+      © All images are taken from Unsplash.com <br>
+      Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
+      <a  href="https://www.github.com/shreyashsrivastava" class="grey-text text-lighten-4 right">Github Link</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+{% extends 'user/base.html' %}
+
+{% block content %}
+
+<h2 class="header center">Add Plant</h2>
+<div class="container">
+<form class="card" method="POST" action="{% url 'nurseryapp:addplant' %}" enctype="multipart/form-data" style="padding:25px;">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input class="btn" type="submit" value="Add"> 
+</form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'user/base.html' %} 
+
+
+{% block content %}
+
+  <div class="row container" style="margin-top: 25px;">
+    <div class="col s12 m6">
+      <div class="card grey lighten-5" style="height: 400px;">
+        <div class="center card-content black-text">
+          <span class="card-title">Customer</span>
+          <i class="large material-icons">people</i>
+          <p>I am a very simple card. I am good at containing small bits of information.
+          I am convenient because I require little markup to use effectively.</p>
+        </div>
+        <div class="center card-action">
+          <a class="btn" href="{% url 'nurseryapp:signup_form' 1 %}">Customer SignUp</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col s12 m6">
+      <div class="card grey lighten-5" style="height: 400px;">
+        <div class="center card-content black-text">
+          <span class="card-title">Nursery</span>
+          <i class="large material-icons">settings</i>
+          <p>I am a very simple card. I am good at containing small bits of information.
+          I am convenient because I require little markup to use effectively.</p>
+        </div>
+        <div class="center card-action">
+          <a class="btn" href="{% url 'nurseryapp:signup_form' 2 %}">Nursery SignUp</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  {% endblock %}
+
+
+ 

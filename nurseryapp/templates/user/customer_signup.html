@@ -1,0 +1,13 @@
+{% extends 'user/base.html' %}
+
+{% block content %}
+
+<h2 class="header center">Customer SignUp</h2>
+<div class="container">
+<form class="card" method="POST" action="{% url 'nurseryapp:post_signup' 1 %}"  style="padding:25px;">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input class="btn" type="submit" value="SignUp"> 
+</form>
+</div>
+  {% endblock %}

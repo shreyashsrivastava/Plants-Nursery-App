@@ -1,0 +1,20 @@
+{% extends 'user/base.html' %}
+
+{% block content %}
+
+<h2 class="header center">Nursery SignUp</h2>
+
+<div class="container">
+    <form class="card" method="POST" action="{% url 'nurseryapp:post_signup' 2 %}" style="padding:25px;">
+        {% csrf_token %}
+        {{form.as_p}}
+        <div class="input-field col s12">
+            <input name="nursery" id="nursery" type="text" class="validate" required>
+            <label for="nursery">Nursery</label>
+        </div>
+        <!-- <input type="text" name="nursery" value="" placeholder="Nursery" /> -->
+        <input class="btn" type="submit" value="SignUp">
+    </form> 
+</div>
+
+{% endblock %}

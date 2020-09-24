@@ -5,8 +5,8 @@ This Web-App is made using Django.
 It has following functionalities:
 
 1. Two different User SignUp support
-..* One for Customer and
-..* Another for Nurseries.
+... One for Customer and
+... Another for Nurseries.
 2. Both the users can logIn from the same login page.
 3. Nurseries can add plants, and can see orders received in their dashboard after Logging In.
 4. Customer can add Plants in thier cart from the homepage, and can place the order.

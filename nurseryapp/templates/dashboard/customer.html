@@ -2,6 +2,29 @@
 
 {% block content %}
 
-<h1>Customer dashboard</h1>
+<div class="container row">
 
+<h2>Orders Placed</h2>
+
+{% for plant in order_items %}
+
+<div class=" col s12 m12 l4" style="margin-top: 50px;">
+    <div class="center card">
+      <div class="card-image">
+        <img src="{{ plant.product.image.url }}" style="height: 300px;">
+        <span class="card-title white-text">{{ plant.product.name|title }}</span>
+      </div>
+      <div class="card-content">
+        <left>
+          <p>{{ plant.product.description }}</p>
+          <p>By {{ plant.product.manager.nursery }}</p>
+          <p>Rs. {{ plant.product.price }}</p>
+          <p>Quantity: {{ plant.quantity }}</p>
+        </left>
+      </div>
+    </div>
+  </div>
+
+{% endfor %}
+</div>
 {% endblock %}

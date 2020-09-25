@@ -2,6 +2,8 @@
 
 {% block content %}
 
+{% if items %}
+
 <div id='cart-card' class="container col s12 m12 l12">
     <div class="card horizontal">
       <div class="card-stacked">
@@ -40,18 +42,7 @@
                     </div>  
 
                     <input class="btn" type="submit" value="Proceed for payment"> 
-
-                    <!-- <ul class="collapsible left-align" id="payment-modal">
-                      <li>
-                        <div class="collapsible-header"><i class="large material-icons">payment</i><button class="btn white black-text" id="make-payment">Proceed for Payment</button> </div>
-                        <div class="collapsible-body">
-                          <span>
-                          <ul>
-                            <li><div id="paypal-button-container"></div></li>
-                          </ul>
-                        </span></div>
-                      </li>
-                    </ul>                                    -->
+                    
                   </form>                                
                 </div>
             </div>
@@ -85,5 +76,11 @@
       </div>
     </div>
 </div>
+
+{% else %}
+
+<h2>Oops! there's nothing in the cart</h2>
+
+{% endif %}
 
 {% endblock %}

@@ -5,12 +5,16 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 import datetime 
+import re
 # from django.contrib import messages
 
 def home(request):
-    plants = Plants.objects.all()
-    return render(request, 'nurseryapp/index.html', {'plants':plants})
+    if not request.user.is_staff:
+        plants = Plants.objects.all()
+        return render(request, 'nurseryapp/index.html', {'plants':plants})
 
+    return HttpResponseRedirect(reverse("nurseryapp:dashboard"))
+    
 def signup_index(request):
     return render(request, "user/index.html")
 
@@ -25,8 +29,21 @@ def signup_form(request, user):
 
 def signup(request, user):
     if request.method == 'POST':
+        customuser = CustomUser.objects.all()
         email = request.POST['username']
-        print(email)
+        phone = request.POST['phone']
+        password = request.POST['password']
+        for users in customuser:
+            if email == users.username:
+                return HttpResponse("Your'e already signed In.")
+            if phone == users.phone:
+                return HttpResponse("Phone number already registered.")
+        if not re.match("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", email):
+            return HttpResponse('Enter a valid email')
+        if not len(phone) == 10 or not phone.isnumeric():
+            return HttpResponse("Enter a valid phone number, should be 10 digits and numbers only.")
+        if not len(password) > 5:
+            return HttpResponse("Password should not be less than 5 characters")
         if user == 1: # user is a customer
             customer = UserForm(request.POST)
             if customer.is_valid():
@@ -58,8 +75,7 @@ def dashboard(request):
     if request.user.is_authenticated:
         if request.user.is_staff:
             myplants = Plants.objects.filter(manager=request.user)
-            mgr_plants = Plants.objects.filter(manager=request.user)
-            order_items = OrderItem.objects.filter(product__id__in=mgr_plants.all()) #life saver line
+            order_items = OrderItem.objects.filter(product__id__in=myplants.all()) #life saver line
            
             for_front = {
                 'myplants':myplants,
@@ -68,7 +84,13 @@ def dashboard(request):
 
             return render(request, 'dashboard/manager.html', for_front)
         else:
-            return render(request, 'dashboard/customer.html')
+            order = Order.objects.filter(customer=request.user, complete=True)
+            order_items = OrderItem.objects.filter(order__id__in=order.all()) 
+            print(order_items)
+            for_front = {
+                'order_items':order_items
+            }
+            return render(request, 'dashboard/customer.html', for_front)
     else:
         return HttpResponseRedirect(reverse('nurseryapp:login_page'))
               
@@ -102,7 +124,7 @@ def user_logout(request):
     logout(request)
     return HttpResponseRedirect(reverse("nurseryapp:home"))
 
-@login_required
+@login_required 
 def addplant_form(request):
     if request.user.is_staff:
         form = PlantsForm()
@@ -145,8 +167,8 @@ def cart(request):
     items = order.orderitem_set.all()
     return render(request, 'nurseryapp/cart.html', {'items':items, 'order':order})
 
-@login_required(login_url='nurseryapp:login_page')
 
+@login_required(login_url='nurseryapp:login_page')
 def checkout(request):
     customer = request.user
     order, created = Order.objects.get_or_create(customer=customer, complete=False)

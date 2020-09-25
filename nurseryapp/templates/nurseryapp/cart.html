@@ -2,6 +2,7 @@
 
 {% block content %}
 
+{% if order.get_cart_items is not 0 %}
 <div id='cart-card' class="container col s12 m12 l12">  
     <div class="card horizontal">
       <div class="card-stacked">
@@ -21,6 +22,10 @@
       </div>
     </div>
 </div>
+{% else %}
+  <h2 class="center">Oops! there's nothing in the cart</h2>
+{% endif %}
+
 {% for item in items %}
 <div id='cart-card' class="container col s12 m12 l12">
   <div class="card horizontal">

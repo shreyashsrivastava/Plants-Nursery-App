@@ -12,10 +12,10 @@
   
   <nav class="white">
     <div class="nav-wrapper">
-      <img src="../../../media/logo/plant.svg" class="brand-logo" height="60px" width="60px">
+      <a href="{% url 'nurseryapp:home' %}"><img src="../../../media/logo/plant.svg" class="brand-logo" height="55px" width="60px"></a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li><a class="black-text" href="{% url 'nurseryapp:home' %}">Home</a></li>
-        <li><a class="black-text" href="{% url 'nurseryapp:home' %}">Shop</a></li>
+        <li><a class="black-text" href="{% url 'nurseryapp:home' %}/#shop">Shop</a></li>
         {% if user.is_authenticated %}
         <li><a class="black-text" href="{% url 'nurseryapp:logout' %}">LogOut</a></li>
         {% else %}
@@ -32,24 +32,24 @@
     <div class="container">
       <div class="row">
         <div class="col l6 s12">
-          <h5 class="black-text">Footer Content</h5>
-          <p class="grey-text text-darken-4">You can use rows and columns here to organize your footer content.</p>
+          <h5 class="black-text">Nursery</h5>
+          <p class="grey-text text-darken-4">This website is for the showcase purpose only.</p>
         </div>
         <div class="col l4 offset-l2 s12">
           <h5 class="black-text">Links</h5>
           <ul>
-            <li><a class="grey-text text-darken-4" href="#!">Link 1</a></li>
-            <li><a class="grey-text text-darken-4" href="#!">Link 2</a></li>
-            <li><a class="grey-text text-darken-4" href="#!">Link 3</a></li>
-            <li><a class="grey-text text-darken-4" href="#!">Link 4</a></li>
+            <li><a class="grey-text text-darken-4" href="{% url 'nurseryapp:home' %}">Home</a></li>
+            <li><a class="grey-text text-darken-4" href="{% url 'nurseryapp:signup' %}">SignUp</a></li>
+            <li><a class="grey-text text-darken-4" href="{% url 'nurseryapp:login_page' %}">LogIn</a></li>
           </ul>
         </div>
       </div>
     </div>
     <div class="footer-copyright">
       <div class="container">
-      © 2014 Copyright Text
-      <a class="grey-text text-darken-4 right" href="#!">More Links</a>
+      © 2020 Nursery 
+      <a  href="https://www.github.com/shreyashsrivastava" class="grey-text text-lighten-4 right">Github Link</a>
+
       </div>
     </div>
   </footer>

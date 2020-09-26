@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="../../../media/css/style.css">
     <title>Nursery</title>
 
 <style>
@@ -25,31 +26,30 @@ html{
 </head>
 <body>
     
-  <nav class="white" style="min-height: 175px;">
+  <nav class="nav-center white" style="min-height: 150px;">
     <div class="nav-wrapper">
-        <img href="{% url 'nurseryapp:home' %}" src="../../../media/logo/plant.svg" class="brand-logo" style="height:175px; width: 225px; padding-top: 15px; padding-left: 0px; padding-bottom: 10px;">
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <div class="center" style="margin-top: 60px; margin-right: 550px;">
-            <li><a href="#home" class="black-text bold"><b>Home</a></li>
-            <li><a href="#shop" class="black-text">Shop</a></li>
-            {% if user.is_authenticated %}
-              <li><a href="{% url 'nurseryapp:logout' %}" class="black-text">LogOut</a></li>
-            {% else %}
-              <li><a href="{% url 'nurseryapp:signup' %}" class="black-text">SignUp</a></li>
-              <li><a href="{% url 'nurseryapp:login_page' %}" class="black-text">LogIn</a></li>              
-            {% endif %}
-        </div>
-        <div class="right" style="margin-top: 7px;">
-            <li><a class="material-icons black-text">search</li>
-            <li><a class="material-icons black-text" href="{% url 'nurseryapp:dashboard' %}">account_circle</li>
-            <li><a class="material-icons black-text" href="{% url 'nurseryapp:cart' %}">shopping_cart</a></li>
-        </div>
+        <a href="{% url 'nurseryapp:home' %}" class="brand-logo left"><img src="../../../media/logo/plant.svg" width="100%" height="100px"></a>
+        <ul>
+          <li><a href="#home" class="black-text bold"><b>Home</a></li>
+          <li><a href="#shop" class="black-text">Shop</a></li>
+          {% if user.is_authenticated %}
+            <li><a href="{% url 'nurseryapp:logout' %}" class="black-text">LogOut</a></li>
+          {% else %}
+            <li><a href="{% url 'nurseryapp:signup' %}" class="black-text">SignUp</a></li>
+            <li><a href="{% url 'nurseryapp:login_page' %}" class="black-text">LogIn</a></li>              
+          {% endif %}
+          
+          <div id="home-icons" class="right" style="margin-top: 7px;">
+              <li><a class="material-icons black-text">search</li>
+              <li><a class="material-icons black-text" href="{% url 'nurseryapp:dashboard' %}">account_circle</li>
+              <li><a class="material-icons black-text" href="{% url 'nurseryapp:cart' %}">shopping_cart</a></li>
+          </div>
         </ul>
     </div>
   </nav>
 
   <div>
-    <img src="../../../media/background/bg1.jpg" alt="bg1" style="filter:brightness(55%); height: 475px; width: 1349px;">
+    <img src="../../../media/background/bg1.jpg" alt="bg1" style="filter:brightness(55%); height: 475px; width: 100%;">
     <div class="text-block">
       <h4>Plants Nursery</h4>
       <p>Naturalize your envirnoment</p>

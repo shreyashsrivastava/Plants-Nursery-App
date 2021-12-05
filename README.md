@@ -15,4 +15,4 @@ It has following functionalities:
 7. Before checkout, user can review order, and have to provide their address.
 
 # Live deployment at
-[https://github.com/shreyashsrivastava/Plants-Nursery-App]
+[HEROKU](http://warm-retreat-43131.herokuapp.com/)

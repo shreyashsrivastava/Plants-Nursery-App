@@ -13,3 +13,6 @@ It has following functionalities:
 5. Manager can also place a order just like a simple Customer.
 6. From the cart, a user can increase or decrease the quantity of the plants and can see respective total amount.
 7. Before checkout, user can review order, and have to provide their address.
+
+# Live deployment at
+[HERKOU](https://github.com/shreyashsrivastava/Plants-Nursery-App)

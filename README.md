@@ -15,4 +15,4 @@ It has following functionalities:
 7. Before checkout, user can review order, and have to provide their address.
 
 # Live deployment at
-[HERKOU](https://github.com/shreyashsrivastava/Plants-Nursery-App)
+[https://github.com/shreyashsrivastava/Plants-Nursery-App]
